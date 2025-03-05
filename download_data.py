@@ -14,7 +14,8 @@ if __name__ == '__main__':
     # Load the data
     print('Loading the data...', end='', flush=True)
 
-    X_df = pd.read_csv(os.path.join(DATA_PATH, 'energydata_complete.csv'), index_col='date')
+    X_df = pd.read_csv(os.path.join(DATA_PATH, 'energydata_complete.csv'),
+                       index_col='date')
     X_df.index = pd.to_datetime(X_df.index)
     last_month = X_df.index.to_period("M").unique()[-1]
     private_test_set = X_df[X_df.index.to_period("M") == last_month]
