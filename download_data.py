@@ -11,9 +11,7 @@ if __name__ == '__main__':
         DATA_PATH.mkdir()
 
     print('Loading the data...', end='', flush=True)
-    data = pd.read_csv(DATA_PATH / 'energydata_complete.csv')
-    X_df = data.drop(columns=['Appliances'])
-    y = data['Appliances']
+    X_df = pd.read_csv(DATA_PATH / 'energydata_complete.csv')
 
     X_train, X_test = train_test_split(  # A modifier
         X_df, test_size=0.2, random_state=57, shuffle=False
