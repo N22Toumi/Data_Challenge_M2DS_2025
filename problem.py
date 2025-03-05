@@ -23,11 +23,14 @@ score_types = [
     rw.score_types.RMSE(name='rmse', precision=4),  # A modifier
 ]
 
-def get_cv(X, y):
-    print('get_cv')
-    cv = StratifiedShuffleSplit(n_splits=8, test_size=0.2, random_state=57)
-    return cv.split(X, y)
 
+# def get_cv(X, y):
+#     print('get_cv')
+#     cv = StratifiedShuffleSplit(n_splits=8, test_size=0.2, random_state=57)
+#     return cv.split(X, y)
+
+def get_cv(X, y):
+    return
 
 def load_data(path='.', file='X_train.csv'):
     path = Path(path) / "data"
