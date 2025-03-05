@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from sklearn.datasets import load_digits
+import pandas as pd
 from sklearn.model_selection import train_test_split
 
 DATA_PATH = Path('data')
@@ -10,14 +10,13 @@ if __name__ == '__main__':
     if not DATA_PATH.exists():
         DATA_PATH.mkdir()
 
-    # Load the data
     print('Loading the data...', end='', flush=True)
-    X_df, y = load_digits(return_X_y=True, as_frame=True) # A modifier
-    X_df['target'] = y
+    data = pd.read_csv(DATA_PATH / 'energydata_complete.csv')
+    X_df = data.drop(columns=['Appliances'])
+    y = data['Appliances']
 
-    X_train, X_test = train_test_split( # A modifier
-        X_df, test_size=0.2, random_state=57, shuffle=True,
-        stratify=y
+    X_train, X_test = train_test_split(  # A modifier
+        X_df, test_size=0.2, random_state=57, shuffle=False
     )
 
     # Save the data
