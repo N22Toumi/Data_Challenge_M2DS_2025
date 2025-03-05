@@ -2,8 +2,7 @@ import rampwf as rw
 
 import pandas as pd
 from pathlib import Path
-
-from sklearn.model_selection import StratifiedShuffleSplit
+from sklearn.model_selection import TimeSeriesSplit
 
 problem_title = 'Template RAMP kit to create data challenges'
 
@@ -29,12 +28,15 @@ score_types = [
 #     cv = StratifiedShuffleSplit(n_splits=8, test_size=0.2, random_state=57)
 #     return cv.split(X, y)
 
+
 def get_cv(X, y):
-    return
+    cv = TimeSeriesSplit(n_splits=5)
+    return cv.split(X, y)
+
 
 def load_data(path='.', file='X_train.csv'):
     path = Path(path) / "data"
-    X_df = pd.read_csv(path / file)
+    X_df = pd.read_csv(path / file, index_col='date')
 
     y = X_df['Appliances']
     X_df = X_df.drop(columns=['Appliances'])
