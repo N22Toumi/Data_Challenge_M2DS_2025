@@ -31,8 +31,8 @@ def load_data(path='.', file='X_train.csv'):
     path = Path(path) / "data"
     X_df = pd.read_csv(path / file)
 
-    y = X_df['target']
-    X_df = X_df.drop(columns=['target'])
+    y = X_df['Appliances']
+    X_df = X_df.drop(columns=['Appliances'])
 
     return X_df, y
 
