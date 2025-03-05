@@ -3,7 +3,7 @@ import rampwf as rw
 import pandas as pd
 from pathlib import Path
 
-from sklearn.model_selection import StratifiedShuffleSplit
+from sklearn.model_selection import TimeSeriesSplit
 
 problem_title = 'Template RAMP kit to create data challenges'
 
@@ -23,7 +23,7 @@ score_types = [
 
 
 def get_cv(X, y):
-    cv = StratifiedShuffleSplit(n_splits=8, test_size=0.2, random_state=57)
+    cv = TimeSeriesSplit(n_splits=8, test_size=0.2, random_state=57)
     return cv.split(X, y)
 
 
