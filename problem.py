@@ -7,22 +7,24 @@ from sklearn.model_selection import StratifiedShuffleSplit
 
 problem_title = 'Template RAMP kit to create data challenges'
 
-_prediction_label_names = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+# _prediction_label_names = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+#
+# # A type (class) which will be used to create wrapper objects for y_pred
+# Predictions = rw.prediction_types.make_multiclass(
+#     label_names=_prediction_label_names
+# )
 
-# A type (class) which will be used to create wrapper objects for y_pred
-Predictions = rw.prediction_types.make_multiclass(
-    label_names=_prediction_label_names
-)
+Predictions = rw.prediction_types.make_regression()
 
 # An object implementing the workflow
 workflow = rw.workflows.Estimator()
 
 score_types = [
-    rw.score_types.Accuracy(name='accuracy', precision=4),  # A modifier
+    rw.score_types.RMSE(name='rmse', precision=4),  # A modifier
 ]
 
-
 def get_cv(X, y):
+    print('get_cv')
     cv = StratifiedShuffleSplit(n_splits=8, test_size=0.2, random_state=57)
     return cv.split(X, y)
 
