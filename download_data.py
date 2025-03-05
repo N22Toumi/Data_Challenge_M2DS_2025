@@ -12,10 +12,10 @@ if __name__ == '__main__':
 
     # Load the data
     print('Loading the data...', end='', flush=True)
-    X_df, y = load_digits(return_X_y=True, as_frame=True)
+    X_df, y = load_digits(return_X_y=True, as_frame=True) # A modifier
     X_df['target'] = y
 
-    X_train, X_test = train_test_split(
+    X_train, X_test = train_test_split( # A modifier
         X_df, test_size=0.2, random_state=57, shuffle=True,
         stratify=y
     )
