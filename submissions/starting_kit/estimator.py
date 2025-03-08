@@ -1,13 +1,13 @@
 
 from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import StandardScaler
-from sklearn.linear_model import LinearRegression
+from sklearn.svm import SVR
 
 
 def get_estimator():
     pipe = make_pipeline(
         StandardScaler(),
-        LinearRegression()
+        SVR()
     )
 
     return pipe
