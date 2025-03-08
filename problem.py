@@ -3,30 +3,31 @@ import rampwf as rw
 import pandas as pd
 from pathlib import Path
 from sklearn.model_selection import TimeSeriesSplit
+import numpy as np
 
-problem_title = 'Template RAMP kit to create data challenges'
-
-# _prediction_label_names = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-#
-# # A type (class) which will be used to create wrapper objects for y_pred
-# Predictions = rw.prediction_types.make_multiclass(
-#     label_names=_prediction_label_names
-# )
+problem_title = 'Predicting Energy Consumption in a Building'
 
 Predictions = rw.prediction_types.make_regression()
 
 # An object implementing the workflow
 workflow = rw.workflows.Estimator()
 
+class MAE(rw.score_types.BaseScoreType):
+    is_lower_the_better = True
+    minimum = 0.0
+    maximum = float('inf')
+
+    def __init__(self, name='mae', precision=4):
+        self.name = name
+        self.precision = precision
+
+    def __call__(self, y_true, y_pred):
+        mask = y_true != -1
+        return np.mean(np.abs((y_true - y_pred)[mask]))
+
 score_types = [
-    rw.score_types.RMSE(name='rmse', precision=4),  # A modifier
+    MAE(name='mean_absolute_error', precision=5),  # A modifier
 ]
-
-
-# def get_cv(X, y):
-#     print('get_cv')
-#     cv = StratifiedShuffleSplit(n_splits=8, test_size=0.2, random_state=57)
-#     return cv.split(X, y)
 
 
 def get_cv(X, y):

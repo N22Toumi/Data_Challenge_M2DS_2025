@@ -1,8 +1,6 @@
 from pathlib import Path
 import os
 import pandas as pd
-# from sklearn.datasets import load_digits
-# from sklearn.model_selection import train_test_split
 
 DATA_PATH = Path('data')
 
