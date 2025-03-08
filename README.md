@@ -4,7 +4,7 @@
 
 ## Introduction
 
-This challenge is based on the paper <https://www.sciencedirect.com/science/article/pii/S0378778816308970?fr=RR-2&ref=pdf_download&rr=91bc15f83edb04a0>. This study investigates the feasibility of predicting the energy consumption of appliances in a low-energy house.
+This challenge is based on the paper [Data driven prediction models of energy use of appliances in a low-energy house](https://www.sciencedirect.com/science/article/pii/S0378778816308970?fr=RR-2&ref=pdf_download&rr=91bc15f83edb04a0). This study investigates the feasibility of predicting the energy consumption of appliances in a low-energy house.
 
 The dataset comes from a wireless sensor network installed in a house, collecting temperature and humidity data from different rooms. It also includes weather data from a nearby airport station and recorded energy usage of lighting fixtures and appliances.
 
