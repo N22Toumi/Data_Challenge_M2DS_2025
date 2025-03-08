@@ -1,5 +1,4 @@
 from pathlib import Path
-import os
 import pandas as pd
 
 DATA_PATH = Path('data')
@@ -27,12 +26,17 @@ def main():
     X_train_df.index = pd.to_datetime(X_train_df.index)
 
     last_month_public = X_train_df.index.to_period("M").unique()[-1]
-    public_test_set = X_train_df[X_train_df.index.to_period("M") == last_month_public]
-    public_training_set = X_train_df[X_train_df.index.to_period("M") != last_month_public]
+    public_test_set = X_train_df[
+        X_train_df.index.to_period("M") == last_month_public
+        ]
+    public_training_set = X_train_df[
+        X_train_df.index.to_period("M") != last_month_public
+        ]
 
     public_training_set.to_csv(PUBLIC_PATH / 'X_train.csv', index=True)
     public_test_set.to_csv(PUBLIC_PATH / 'X_test.csv', index=True)
     print('Public split done.')
+
 
 if __name__ == '__main__':
     main()
