@@ -37,6 +37,11 @@ Get started on this RAMP with the
 The submissions need to be located in the `submissions` folder. For instance
 for `my_submission`, it should be located in `submissions/my_submission`.
 
+You may need to download the data first:
+```bash
+python download_data.py
+```
+
 To run a specific submission, you can use the `ramp-test` command line:
 
 ```bash
