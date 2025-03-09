@@ -27,7 +27,7 @@ class MAE(rw.score_types.BaseScoreType):
 
 
 score_types = [
-    MAE(name='mean_absolute_error', precision=5),  # A modifier
+    MAE(name='mean_absolute_error', precision=5),
 ]
 
 
