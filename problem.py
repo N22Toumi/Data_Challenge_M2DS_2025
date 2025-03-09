@@ -1,9 +1,8 @@
 import rampwf as rw
-
+import numpy as np
 import pandas as pd
 from pathlib import Path
 from sklearn.model_selection import TimeSeriesSplit
-import numpy as np
 
 problem_title = 'Predicting Energy Consumption in a Building'
 
@@ -11,6 +10,7 @@ Predictions = rw.prediction_types.make_regression()
 
 # An object implementing the workflow
 workflow = rw.workflows.Estimator()
+
 
 class MAE(rw.score_types.BaseScoreType):
     is_lower_the_better = True
@@ -25,6 +25,7 @@ class MAE(rw.score_types.BaseScoreType):
         mask = y_true != -1
         return np.mean(np.abs((y_true - y_pred)[mask]))
 
+
 score_types = [
     MAE(name='mean_absolute_error', precision=5),  # A modifier
 ]
@@ -38,6 +39,7 @@ def get_cv(X, y):
 def load_data(path='.', file='X_train.csv'):
     path = Path(path) / "data"
     X_df = pd.read_csv(path / file, index_col='date')
+    X_df.index = pd.to_datetime(X_df.index)
 
     y = X_df['Appliances']
     X_df = X_df.drop(columns=['Appliances'])
