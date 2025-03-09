@@ -1,9 +1,8 @@
 import rampwf as rw
-
+import numpy as np
 import pandas as pd
 from pathlib import Path
 from sklearn.model_selection import TimeSeriesSplit
-import numpy as np
 
 problem_title = 'Predicting Energy Consumption in a Building'
 
@@ -38,6 +37,7 @@ def get_cv(X, y):
 def load_data(path='.', file='X_train.csv'):
     path = Path(path) / "data"
     X_df = pd.read_csv(path / file, index_col='date')
+    X_df.index = pd.to_datetime(X_df.index)
 
     y = X_df['Appliances']
     X_df = X_df.drop(columns=['Appliances'])
